@@ -1,0 +1,887 @@
+<html>
+ <body>
+  <h1 id="module-shtask">
+   Module shtask
+  </h1>
+  <p>
+   <a href="https://github.com/essine/shtask">
+    shtask
+   </a>
+   (shell task) module is a
+   <a href="https://github.com/calamares">
+    Calamares
+   </a>
+   module
+   <br/>
+   that allows to perform a shell command or script selected by user.
+  </p>
+  <hr/>
+  <ul>
+   <li>
+    <a href="#about">
+     About
+    </a>
+    <ul>
+     <li>
+      <a href="#module-interface">
+       <em>
+        Module interface
+       </em>
+      </a>
+     </li>
+     <li>
+      <a href="#module-output">
+       <em>
+        Module output
+       </em>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#installation">
+     Installation
+    </a>
+   </li>
+   <li>
+    <a href="#usage">
+     Usage
+    </a>
+   </li>
+   <li>
+    <a href="#configuration">
+     Configuration
+    </a>
+   </li>
+   <li>
+    <a href="#test-module">
+     Test module
+    </a>
+   </li>
+   <li>
+    <a href="#customize-interface">
+     Customize interface
+    </a>
+   </li>
+   <li>
+    <a href="#script">
+     Script
+    </a>
+   </li>
+   <li>
+    <a href="#slideshow">
+     Slideshow
+    </a>
+   </li>
+  </ul>
+  <h2 id="about">
+   About
+  </h2>
+  <p>
+   Module
+   <a href="https://github.com/essine/shtask">
+    shtask
+   </a>
+   (shell task) is a
+   <a href="https://github.com/calamares">
+    Calamares
+   </a>
+   module.
+   <br/>
+   Calamares is a distribution-independent installer framework which
+   <br/>
+   has several modules.
+   <br/>
+   ‘shtask’ module is a simple Qt C++ GUI application, that allows
+   <br/>
+   to perform a shell command or script selected by user.
+   <br/>
+   Shell command list can be edit in the module configuration file
+   <em>
+    shtask.conf
+   </em>
+   .
+   <br/>
+   ‘shtask’ module interface looks as shown in ‘Module interface’ figure.
+   <br/>
+   The interface is almost fully customizable by editing
+   <em>
+    shtask.conf
+   </em>
+   .
+   <br/>
+   Thus, for example, the ‘moduleLabel’ parameter in
+   <em>
+    shtask.conf
+   </em>
+   defines
+   <br/>
+   the user-visible module name, which is ‘ShTask’ by default.
+   <br/>
+   The whole ‘ShTask Output’ groupbox can be hidden by setting
+   <br/>
+   ‘taskOutputBox’ to false. ‘Help’ and ‘About’ texts are also editable.
+   <br/>
+   All the interface customization parameters are listed in
+   <a href="#customize-interface">
+    Customize interface
+   </a>
+   section.
+  </p>
+  <h4 id="module-interface">
+   <em>
+    Module interface.
+   </em>
+  </h4>
+  <p>
+   Module interface supports shell command selection and, if necessary, correction.
+   <br/>
+   The shell command output can be directed to console or a graphical window
+   <br/>
+   (see
+   <a href="#usage">
+    Usage
+   </a>
+   section).
+   <br/>
+   <img alt="Image1" src="readme_1.png"/>
+  </p>
+  <h4 id="module-output">
+   <em>
+    Module output.
+   </em>
+  </h4>
+  <p>
+   Here the shell command output is directed to a graphical window.
+   <br/>
+   The output is diplayed and module wait for ‘Close to continue…’ button press.
+   <br/>
+   It can be useful to debug the module.
+   <br/>
+   <img alt="Image2" src="readme_2.png"/>
+  </p>
+  <h2 id="installation">
+   Installation
+  </h2>
+  <p>
+   If
+   <em>
+    …/calamares/src/modules/shtask
+   </em>
+   directory does not exist after loading the
+   <a href="https://github.com/calamares">
+    Calamares
+   </a>
+   ,
+   <br/>
+   please create the directory and copy in it
+   <em>
+    shtask
+   </em>
+   module-related files and folders.
+  </p>
+  <p>
+   The following installation step is optional and can be skipped.
+   <br/>
+   There is a directory named
+   <em>
+    branding
+   </em>
+   in
+   <em>
+    shtask
+   </em>
+   module directory.
+   <br/>
+   It contains files that can be placed in Calamares branding directory usually located
+   <br/>
+   at
+   <em>
+    …/calamares/src/branding/default/
+   </em>
+   before Calamares installation and
+   <br/>
+   at
+   <em>
+    /usr/share/calamares/branding/default/
+   </em>
+   after Calamares installation.
+   <br/>
+   These files, excluding
+   <em>
+    shtask.sh
+   </em>
+   , are responsible for a
+   <a href="#slideshow">
+    slideshow
+   </a>
+   <br/>
+   displayed during execution steps. Script
+   <em>
+    shtask.sh
+   </em>
+   is an example that
+   <br/>
+   can be modified. It is placed here to facilitate its finding.
+  </p>
+  <h2 id="usage">
+   Usage
+  </h2>
+  <p>
+   If
+   <em>
+    shtask
+   </em>
+   module is properly listed in the Calamares configuration file
+   <br/>
+   <em>
+    settings.conf
+   </em>
+   (see
+   <a href="#test-module">
+    Test module
+   </a>
+   section), it will prompt
+   <br/>
+   user to select a task from the combobox list.
+   <br/>
+   Select a shell command using ‘Select a task to perform’ combobox (see
+   <br/>
+   ‘Module interface’ figure). The selected command can be corrected in
+   <br/>
+   ‘Selected task command’ line edit. ‘’ShTask’ Output’ groupbox allows
+   <br/>
+   to direct shell command output to console or a graphical window.
+   <br/>
+   Output window closing delay and pause are also under control of
+   <br/>
+   ‘’ShTask’ Output’ groupbox items. Task name list ‘taskLabels’
+   <br/>
+   and command list ‘taskCommands’, as well as other parameters, are defined
+   <br/>
+   in
+   <em>
+    shtask.conf
+   </em>
+   <a href="#configuration">
+    configuration
+   </a>
+   file.
+   <br/>
+   Shell command may also contain the name of the
+   <a href="#script">
+    script
+   </a>
+   to execute.
+  </p>
+  <h2 id="configuration">
+   Configuration
+  </h2>
+  <p>
+   Module
+   <em>
+    shtask
+   </em>
+   reads
+   <em>
+    shtask.conf
+   </em>
+   , the module configuration file.
+   <br/>
+   File
+   <em>
+    shtask.conf
+   </em>
+   contains parameters that control
+   <em>
+    shtask
+   </em>
+   module.
+   <br/>
+   ‘taskLabels’ and ‘taskCommands’ parameters define task selection list.
+   <br/>
+   Some of the parameters like ‘moduleLabel’ and ‘moduleInfoLine’
+   <br/>
+   allow to
+   <a href="#customize-interface">
+    customize
+   </a>
+   module interface.
+   <br/>
+   If a parameter value is a string with special characters use quotes
+   <br/>
+   (YAML rules).
+  </p>
+  <p>
+   The following parametes are available in shtask.conf:
+  </p>
+  <ul>
+   <li>
+    <h4 id="modulelabel">
+     <em>
+      moduleLabel
+     </em>
+    </h4>
+    <p>
+     String will appear in the Calamares module name list.
+     <br/>
+     The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       moduleLabel: ShTask
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="moduleinfoline">
+     <em>
+      moduleInfoLine
+     </em>
+    </h4>
+    <p>
+     String will appear at the top of the task selection page.
+     <br/>
+     The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       moduleInfoLine: "´ShTask´ module performs a shell command or script selected by user."
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskchoicelabel">
+     <em>
+      taskChoiceLabel
+     </em>
+    </h4>
+    <p>
+     String will appear to the left of the task selection combobox.
+     <br/>
+     The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskChoiceLabel: Select a task to perform
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskeditlabel">
+     <em>
+      taskEditLabel
+     </em>
+    </h4>
+    <p>
+     String will appear to the left of the command line edit.
+     <br/>
+     The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskEditLabel: Selected task command (editable)
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskoutputbox">
+     <em>
+      taskOutputBox
+     </em>
+    </h4>
+    <p>
+     If ‘taskOutputBox’ is true,
+     <br/>
+     the groupbox that contains ‘Output monitor’ and ‘Time control’ elements
+     <br/>
+     will be shown. The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskOutputBox: true
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="tasklabels">
+     <em>
+      taskLabels
+     </em>
+    </h4>
+    <p>
+     String list for the task selection combobox.
+     <br/>
+     The parameter is created to customize module interface.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskLabels:
+      </code>
+      <br/>
+      <code>
+       - current directory
+      </code>
+      <br/>
+      <code>
+       - list directory contents
+      </code>
+      <br/>
+      <code>
+       - "shell script shtask.sh"
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskcommands">
+     <em>
+      taskCommands
+     </em>
+    </h4>
+    <p>
+     String list of commands correspond to the labels in ‘taskLabels’ list.
+     <br/>
+     For a bash script please indicate the correct script path.
+     <br/>
+     If script file path is not indicated, module looks for the script
+     <br/>
+     in current directory or in Calamares branding directory (see
+     <a href="#script">
+      Script
+     </a>
+     section).
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskCommands:
+      </code>
+      <br/>
+      <code>
+       - pwd
+      </code>
+      <br/>
+      <code>
+       - ls -l
+      </code>
+      <br/>
+      <code>
+       - "bash anytask.sh"
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskscript">
+     <em>
+      taskScript
+     </em>
+    </h4>
+    <p>
+     If ‘taskScript’ string list is present,
+     <br/>
+     module creates generated.sh script from the list.
+     <br/>
+     A corresponding task appears in ‘taskLabels’ and
+     <br/>
+     ‘taskCommands’ lists under the name ‘generated script’.
+     <br/>
+     File
+     <em>
+      generated.sh
+     </em>
+     is temporary file and will be deleted (see
+     <a href="#script">
+      Script
+     </a>
+     section).
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskScript:
+      </code>
+      <br/>
+      <code>
+       - pwd
+      </code>
+      <br/>
+      <code>
+       - uname-a
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskoutputconsole">
+     <em>
+      taskOutputConsole
+     </em>
+    </h4>
+    <p>
+     If ‘taskOutputConsole’ is true,
+     <br/>
+     the command output appears in Calamares console ( “calamares -d” ).
+     <br/>
+     The parameter is created to debug the module.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskOutputConsole: false
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskoutputwindow">
+     <em>
+      taskOutputWindow
+     </em>
+    </h4>
+    <p>
+     If ‘taskOutputWindow’ is true,
+     <br/>
+     the command output appears in a graphical window.
+     <br/>
+     The parameter is created to debug the module.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskOutputWindow: false
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="outputpause">
+     <em>
+      outputPause
+     </em>
+    </h4>
+    <p>
+     If ‘outputPause’ is true,
+     <br/>
+     the command output widnow will pause and wait for a button to be pressed.
+     <br/>
+     The parameter is created to debug the module.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       outputPause: false
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="outputdelaysec">
+     <em>
+      outputDelaySec
+     </em>
+    </h4>
+    <p>
+     If interger is &gt; 0,
+     <br/>
+     the command output widnow sleeps for ‘outputDelaySec’ seconds.
+     <br/>
+     The parameter is created to debug the module.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       outputDelaySec: 0
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskhelp">
+     <em>
+      taskHelp
+     </em>
+    </h4>
+    <p>
+     If ‘taskHelp’ string list is present,
+     <br/>
+     pressing ‘Help’ button displays the text created from the list.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskHelp:
+      </code>
+      <br/>
+      <code>
+       - "Select a shell command or script using 'Select a task to perform' combobox."
+      </code>
+      <br/>
+      <code>
+       - "The selected command can be corrected in 'Selected task command' line edit."
+      </code>
+      <br/>
+      <code>
+       - "Check 'Console' checkbox to send command output to Calamares console (calamares -d)."
+      </code>
+      <br/>
+      <code>
+       - "Check 'Window' checkbox to send command output to a new graphical window."
+      </code>
+      <br/>
+      <code>
+       - "If checkbox 'Pause' is checked, the output window stay visible until close button click."
+      </code>
+      <br/>
+      <code>
+       - "If 'Pause' is unchecked, the output window will be shown for selected 'Delay' seconds."
+      </code>
+      <br/>
+      <code>
+       - "The parameters that control module behavior are defined in 'shtask.conf' configuration file."
+      </code>
+      <br/>
+      <code>
+       - "For more help please see README.html."
+      </code>
+      <br/>
+      <code>
+       - "\n"
+      </code>
+      <br/>
+      <code>
+       - "This text can be replaced in shtask.conf, the module configuration file."
+      </code>
+     </p>
+    </blockquote>
+   </li>
+   <li>
+    <h4 id="taskabout">
+     <em>
+      taskAbout
+     </em>
+    </h4>
+    <p>
+     If ‘taskAbout’ string list is present,
+     <br/>
+     pressing ‘About’ button displays the text created from the list.
+    </p>
+    <blockquote>
+     <p>
+      <code>
+       taskAbout:
+      </code>
+      <br/>
+      <code>
+       - "'shtask' is a Calamares module."
+      </code>
+      <br/>
+      <code>
+       - "It allows to select and perform a shell command or script."
+      </code>
+      <br/>
+      <code>
+       - "\n"
+      </code>
+      <br/>
+      <code>
+       - "This text can be replaced in shtask.conf, the module configuration file."
+      </code>
+     </p>
+    </blockquote>
+   </li>
+  </ul>
+  <h2 id="test-module">
+   Test module
+  </h2>
+  <p>
+   The configuration of Calamares is done in
+   <em>
+    settings.conf
+   </em>
+   .
+   <br/>
+   The modules listed in
+   <em>
+    settings.conf
+   </em>
+   are loaded one by one.
+   <br/>
+   To test ‘shtask’ alone comment all the modules in settings.conf
+   <br/>
+   except of ‘welcome’ and ‘finished’ modules:
+  </p>
+  <blockquote>
+   <p>
+    <code>
+     sequence:
+    </code>
+    <br/>
+    <code>
+     - show:
+    </code>
+    <br/>
+    <code>
+     - welcome
+    </code>
+    <br/>
+    <code>
+     - shtask
+    </code>
+    <br/>
+    <code>
+     - exec:
+    </code>
+    <br/>
+    <code>
+     - shtask
+    </code>
+    <br/>
+    <code>
+     - show:
+    </code>
+    <br/>
+    <code>
+     - finished
+    </code>
+    <br/>
+    <code>
+     branding: default
+    </code>
+   </p>
+  </blockquote>
+  <p>
+   set ‘taskOutputBox’ parameter in
+   <em>
+    shtask.conf
+   </em>
+   to true.
+   <br/>
+   It allows to monitor ‘shtask’ output.
+   <br/>
+   The output can be directed to Calamares console,
+   <br/>
+   if Calamares was started with debug option ‘calamares -d’,
+   <br/>
+   or to a graphical window. Please see for details the description of
+   <br/>
+   ‘taskOutputConsole’, ‘taskOutputWindow’, ‘outputPause’ and
+   <br/>
+   ‘outputDelaySec’ parameters in
+   <a href="#configuration">
+    Configuration
+   </a>
+   section.
+  </p>
+  <h2 id="customize-interface">
+   Customize interface
+  </h2>
+  <p>
+   Module interface can be customized using following parameters from
+   <em>
+    shtask.conf
+   </em>
+   :
+   <br/>
+   ‘moduleLabel’, ‘moduleInfoLine’, ‘taskChoiceLabel’, ‘taskEditLabel’,
+   <br/>
+   ‘taskOutputBox’, ‘taskHelp’ and ‘taskAbout’.
+   <br/>
+   Please see
+   <a href="#configuration">
+    Configuration
+   </a>
+   section for details.
+  </p>
+  <h2 id="script">
+   Script
+  </h2>
+  <p>
+   Shell command may contain the name of the script to execute e.g.: ‘bash shtask.sh’.
+   <br/>
+   If script file path is not indicated, module looks for the script in
+   <br/>
+   current directory or in Calamares branding directory, which is usually
+   <br/>
+   <em>
+    /usr/share/calamares/branding/default”
+   </em>
+   . Script file can be placed in
+   <br/>
+   Calamares branding directory to facilitate search (see
+   <a href="#installation">
+    Installation
+   </a>
+   section).
+   <br/>
+   For manual search please use ‘Find Script’ button.
+   <br/>
+   If ‘taskScript’ string list is present in
+   <em>
+    shtask.conf
+   </em>
+   , module creates
+   <br/>
+   in current directory
+   <em>
+    generated.sh
+   </em>
+   script from the list. A corresponding task appears
+   <br/>
+   in ‘taskLabels’ and ‘taskCommands’ lists under the name ‘generated script’.
+   <br/>
+   File
+   <em>
+    generated.sh
+   </em>
+   is temporary file and will be deleted.
+  </p>
+  <h2 id="slideshow">
+   Slideshow
+  </h2>
+  <p>
+   A slideshow is displayed during execution steps (e.g. when the
+   <br/>
+   installer is actually writing to disk and doing other slow things).
+   <br/>
+   To customize slideshow edit file
+   <em>
+    …/branding/default/show.qml
+   </em>
+   <br/>
+   or replace it with
+   <em>
+    show.qml
+   </em>
+   provided by shtask module
+   <br/>
+   <em>
+    …/calamares/src/shtask/branding/show.qml
+   </em>
+   and copy corresponding *
+   <em>
+    .png
+   </em>
+   files.
+   <br/>
+   Please keep in mind that QML slideshow is common for all modules.
+  </p>
+  <p>
+   <a href="#module-shtask">
+    Scroll Up
+   </a>
+  </p>
+ </body>
+</html>
